@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 
 /// <summary>
@@ -8,9 +9,8 @@ using UnityEngine;
 /// </summary>
 public class Tile
 {
-
-    public int owner { get; }
-    public int score { get; }
+    public int owner { get; private set; }
+    public int score { get; private set; }
 
     public Tile(int owner = 0, int score = 0)
     {
@@ -62,6 +62,7 @@ public class Tile
     public async Task FlipModel()
     {
         //TODO Flip tile model
+        Debug.Log("Flip tile model");
     }
 
 

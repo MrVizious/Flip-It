@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace GameEvents
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "GameEvents/_No Parameters")]
     public class GameEvent : ScriptableObject
     {
         /// <summary>
         /// The list of listeners that this event will notify if it is raised.
         /// </summary>
-        private readonly List<GameEventListener> eventListeners =
+        protected readonly List<GameEventListener> eventListeners =
             new List<GameEventListener>();
 
-        public void Raise()
+        public virtual void Raise()
         {
             for (int i = eventListeners.Count - 1; i >= 0; i--)
                 eventListeners[i].OnEventRaised();

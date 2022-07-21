@@ -11,37 +11,31 @@ public class Tile
 {
     public int owner { get; private set; }
     public int score { get; private set; }
+    public TileModel model { get; private set; }
 
-    public Tile(int owner = 0, int score = 0)
+    public Tile(int score = 0, TileModel model = null, int owner = 0)
     {
         this.owner = owner;
         this.score = score;
+        this.model = model;
     }
 
-    public async Task Flip(int newOwner = 0)
+    public async Task FirstAssignment(int owner)
     {
-        if (newOwner == 0)
-        {
-            owner = newOwner;
-        }
-        else
-        {
-            ToggleOwner();
-        }
+        this.owner = owner;
+        await model.InitializeModel(owner);
+    }
+
+    public async Task Flip()
+    {
+        ToggleOwner();
         DoubleScore();
-        await FlipModel();
+        await model.FlipModel();
     }
 
     public void ToggleOwner()
     {
-        if (owner == 1)
-        {
-            owner = 2;
-        }
-        else
-        {
-            owner = 1;
-        }
+        owner = owner == 1 ? 2 : 1;
     }
 
     public void AddScore(int score = 0)
@@ -57,12 +51,6 @@ public class Tile
     public void DoubleScore()
     {
         MultiplyScoreBy(2);
-    }
-
-    public async Task FlipModel()
-    {
-        //TODO Flip tile model
-        Debug.Log("Flip tile model");
     }
 
 

@@ -11,26 +11,32 @@ public class Tile
 {
     public int owner { get; private set; }
     public int score { get; private set; }
-    public TileModel model { get; private set; }
+    public TileModelController model { get; private set; }
 
-    public Tile(int score = 0, TileModel model = null, int owner = 0)
+
+    public Tile(int score = 0, int owner = 0, TileModelController model = null)
     {
-        this.owner = owner;
         this.score = score;
+        this.owner = owner;
         this.model = model;
     }
 
     public async Task FirstAssignment(int owner)
     {
         this.owner = owner;
-        await model.InitializeModel(owner);
+        await model.SetOwner(owner);
     }
 
     public async Task Flip()
     {
+        if (model.isRotating)
+        {
+            Debug.LogError("Tile is already rotating");
+            return;
+        }
         ToggleOwner();
         DoubleScore();
-        await model.FlipModel();
+        await model.SetOwner(owner);
     }
 
     public void ToggleOwner()

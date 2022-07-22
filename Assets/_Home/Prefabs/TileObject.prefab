@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2079787471890858393}
   - component: {fileID: 195897949274256879}
   - component: {fileID: 7314545136817023276}
-  - component: {fileID: 54474652366000850}
   - component: {fileID: 2998736765544704101}
+  - component: {fileID: -3118691083189744468}
   m_Layer: 0
-  m_Name: TileModel
+  m_Name: TileObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &54474652366000850
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6961308892393463378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2998736765544704101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6c10a29f62a5040a0dc466eadca723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyTileMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  filledTileMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  emptyTileMaterial: {fileID: 2100000, guid: 48aa791264d44d048996223a8a4fbeaa, type: 2}
+  filledTileMaterial: {fileID: 2100000, guid: 512354a1d3192d34dbfeaa9be3c3dca0, type: 2}
+--- !u!64 &-3118691083189744468
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961308892393463378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

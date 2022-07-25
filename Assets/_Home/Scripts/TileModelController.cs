@@ -19,7 +19,7 @@ public class TileModelController : MonoBehaviour
 
     private Quaternion initialRotation;
 
-    private void Start()
+    private void Awake()
     {
         initialRotation = transform.rotation;
         meshCollider = GetComponent<MeshCollider>();
@@ -38,7 +38,6 @@ public class TileModelController : MonoBehaviour
         Quaternion targetRotation;
         if (owner == 0 || owner == 1)
         {
-            Debug.Log("Set empty model");
             targetRotation = initialRotation * Quaternion.AngleAxis(360, Vector3.right + Vector3.forward);
         }
         else
@@ -81,9 +80,11 @@ public class TileModelController : MonoBehaviour
         }
         if (owner == 0)
         {
-            meshFilter.mesh = emptyTileMesh;
+            Debug.Log("Set empty model");
+            Mesh newMesh = emptyTileMesh;
+            meshFilter.mesh = newMesh;
             meshRenderer.material = emptyTileMaterial;
-            meshCollider.sharedMesh = emptyTileMesh;
+            meshCollider.sharedMesh = newMesh;
         }
         else
         {
@@ -91,6 +92,5 @@ public class TileModelController : MonoBehaviour
             meshRenderer.material = filledTileMaterial;
             meshCollider.sharedMesh = filledTileMesh;
         }
-        await Task.Yield();
     }
 }

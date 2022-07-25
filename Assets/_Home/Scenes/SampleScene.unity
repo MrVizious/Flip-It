@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 7
   currentTurn: 1
-  tileObjectPrefab: {fileID: 0}
+  tileObjectPrefab: {fileID: 6961308892393463378, guid: b285bfdfc706e874eab6ec43848d7549, type: 3}
 --- !u!4 &1759701370
 Transform:
   m_ObjectHideFlags: 0

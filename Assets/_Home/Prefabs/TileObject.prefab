@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6c10a29f62a5040a0dc466eadca723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyTileMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  emptyTileMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   filledTileMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   emptyTileMaterial: {fileID: 2100000, guid: 48aa791264d44d048996223a8a4fbeaa, type: 2}
   filledTileMaterial: {fileID: 2100000, guid: 512354a1d3192d34dbfeaa9be3c3dca0, type: 2}

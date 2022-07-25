@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 /// </summary>
 public class Tile
 {
+    /// <summary>
+    /// 0: Empty, 1: Player 1, 2: Player 2
+    /// </summary>
+    /// <value></value>
     public int owner { get; private set; }
     public int score { get; private set; }
     public TileModelController model { get; private set; }
@@ -19,6 +23,7 @@ public class Tile
         this.score = score;
         this.owner = owner;
         this.model = model;
+        FirstAssignment(owner);
     }
 
     public async Task FirstAssignment(int owner)

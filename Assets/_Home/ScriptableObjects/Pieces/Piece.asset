@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Piece
   m_EditorClassIdentifier: 
   size: 7
+  mainTilePosition: {x: 3, y: 3}

@@ -16,10 +16,10 @@ public class Piece : ScriptableObject
     {
         get
         {
-            return mainTilePosition.x > 0
-                && mainTilePosition.x < tiles.GetLength(0) - 1
-                && mainTilePosition.y > 0
-                && mainTilePosition.y < tiles.GetLength(1) - 1;
+            return mainTilePosition.x >= 0
+                && mainTilePosition.x < tiles.GetLength(0)
+                && mainTilePosition.y >= 0
+                && mainTilePosition.y < tiles.GetLength(1);
         }
     }
     private bool[,] _tiles;
@@ -152,60 +152,67 @@ public class EditorTestEditor : Editor
 
     private void DrawRegularGrid()
     {
-        for (int i = 0; i < piece.tiles.GetLength(1); i++)
+        for (int y = 0; y < piece.tiles.GetLength(1); y++)
         {
             EditorGUILayout.BeginHorizontal();
-            for (int j = 0; j < piece.tiles.GetLength(0); j++)
+            for (int x = 0; x < piece.tiles.GetLength(0); x++)
             {
                 if (piece.hasMainTilePosition)
                 {
-                    if (j == piece.mainTilePosition.x && i == piece.mainTilePosition.y)
+                    if (x == piece.mainTilePosition.x &&
+                        y == piece.mainTilePosition.y)
                     {
                         GUI.enabled = false;
-                        piece.tiles[j, i] = true;
-                        EditorGUILayout.Toggle(piece.tiles[j, i]);
+                        piece.tiles[x, y] = EditorGUILayout.Toggle(true);
                         GUI.enabled = true;
                         continue;
                     }
                 }
-                piece.tiles[j, i] = EditorGUILayout.Toggle(piece.tiles[j, i]);
+                piece.tiles[x, y] = EditorGUILayout.Toggle(piece.tiles[x, y]);
             }
             EditorGUILayout.EndHorizontal();
         }
     }
 
 
-    // TODO: Fix issue with edge tiles
     private void DrawMainGrid()
     {
 
-        for (int i = 0; i < piece.tiles.GetLength(1); i++)
+        for (int y = 0; y < piece.tiles.GetLength(1); y++)
         {
 
             EditorGUILayout.BeginHorizontal();
             if (piece.hasMainTilePosition)
                 GUI.enabled = false;
 
-            for (int j = 0; j < piece.tiles.GetLength(0); j++)
+            for (int x = 0; x < piece.tiles.GetLength(0); x++)
             {
-                if (piece.hasMainTilePosition && j == piece.mainTilePosition.x && i == piece.mainTilePosition.y)
+                if (piece.hasMainTilePosition)
                 {
-                    GUI.enabled = true;
-                    piece.tiles[j, i] = true;
-                    bool isMain = EditorGUILayout.Toggle(true);
-                    if (!isMain)
+                    if (x == piece.mainTilePosition.x &&
+                        y == piece.mainTilePosition.y)
                     {
-                        piece.mainTilePosition = new Vector2Int(-1, -1);
+                        GUI.enabled = true;
+                        bool isMain = EditorGUILayout.Toggle(true);
+                        if (!isMain)
+                        {
+                            piece.mainTilePosition = new Vector2Int(-1, -1);
+                            piece.tiles[x, y] = false;
+                        }
+                        GUI.enabled = false;
                     }
-                    GUI.enabled = false;
+                    else
+                    {
+                        EditorGUILayout.Toggle(false);
+                    }
                 }
                 else
                 {
                     bool isMain = EditorGUILayout.Toggle(false);
                     if (isMain)
                     {
-                        piece.tiles[j, i] = true;
-                        piece.mainTilePosition = new Vector2Int(j, i);
+                        piece.mainTilePosition = new Vector2Int(x, y);
+                        piece.tiles[x, y] = true;
                         GUI.enabled = false;
                         Debug.Log(piece.mainTilePosition);
                     }
